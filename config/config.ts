@@ -29,11 +29,7 @@ export default defineConfig({
 		loading: '@ant-design/pro-layout/es/PageLoading',
 	},
 	targets: {
-		chrome: 80, // Target Chrome 80 trở lên
-		firefox: 80, // Target Firefox 80 trở lên
-		safari: 14, // Target Safari 14 trở lên
-		edge: 80, // Target Edge 80 trở lên
-		esmodules: true, // Quan trọng: bật hỗ trợ ES Modules cho các trình duyệt hiện đại
+		esmodules: true,
 	},
 	routes,
 	// Theme for antd: https://ant.design/docs/react/customize-theme-cn
