@@ -1,34 +1,28 @@
 import axios from '@/utils/axios';
-import type { AdmissionPeriod, AdmissionPeriodListResponse, AdmissionPeriodDetailResponse } from '@/models/Admin/AdmissionPeriods';
+import type { University, UniversityListResponse, UniversityDetailResponse } from '@/models/Admin/University';
+import { BASE_URL } from '@/utils/utils';
 
-const BASE_URL = 'http://localhost:3456/admin/admission-periods';
-
-export async function getAllAdmissionPeriods(): Promise<AdmissionPeriodListResponse> {
-  const response = await axios.get(BASE_URL);
+export async function getAllUniversities(): Promise<UniversityListResponse> {
+  const response = await axios.get(`${BASE_URL}/admin/universities`);
   return response.data;
 }
 
-export async function getAdmissionPeriodById(periodId: string): Promise<AdmissionPeriodDetailResponse> {
-  const response = await axios.get(`${BASE_URL}/${periodId}`);
+export async function getUniversityById(universityId: string): Promise<UniversityDetailResponse> {
+  const response = await axios.get(`${BASE_URL}/admin/universities/${universityId}`);
   return response.data;
 }
 
-export async function createAdmissionPeriod(data: Omit<AdmissionPeriod, '_id' | 'created_at' | 'updated_at'>): Promise<AdmissionPeriodDetailResponse> {
-  const response = await axios.post(BASE_URL, data);
+export async function createUniversity(data: Omit<University, '_id' | 'created_at' | 'updated_at'>): Promise<UniversityDetailResponse> {
+  const response = await axios.post(`${BASE_URL}/admin/universities`, data);
   return response.data;
 }
 
-export async function updateAdmissionPeriod(periodId: string, data: Partial<Omit<AdmissionPeriod, '_id' | 'created_at' | 'updated_at'>>): Promise<AdmissionPeriodDetailResponse> {
-  const response = await axios.put(`${BASE_URL}/${periodId}`, data);
+export async function updateUniversity(universityId: string, data: Partial<Omit<University, '_id' | 'created_at' | 'updated_at'>>): Promise<UniversityDetailResponse> {
+  const response = await axios.put(`${BASE_URL}/admin/universities/${universityId}`, data);
   return response.data;
 }
 
-export async function deleteAdmissionPeriod(periodId: string): Promise<AdmissionPeriodDetailResponse> {
-  const response = await axios.delete(`${BASE_URL}/${periodId}`);
+export async function deleteUniversity(universityId: string): Promise<UniversityDetailResponse> {
+  const response = await axios.delete(`${BASE_URL}/admin/universities/${universityId}`);
   return response.data;
 }
-
-export async function getAdmissionPeriodsByUniversityId(universityId: string): Promise<AdmissionPeriodListResponse> {
-  const response = await axios.get(`${BASE_URL}/university/${universityId}`);
-  return response.data;
-} 
